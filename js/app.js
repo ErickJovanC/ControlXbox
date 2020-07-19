@@ -6,6 +6,9 @@ const boton = document.querySelector('#boton');
 let consolaActiva = false;  // Se activa al oprimir en Contar
 let contador = 1;   // Cuenta los segundos trascurridos
 let tiempo1;    // Tiempo obtenido al dar clic en el botón
+let tiempoTotal;
+let precioHora = 12; // Se obtendra de un input establecido por el admin
+let precio;
 
 // Eventos
 boton.addEventListener('click', iniciaContador);
@@ -19,9 +22,10 @@ function iniciaContador(){
     }
     else{
         let tiempoFin = new Date();
-        console.log(tiempoFin.getTime());
-        console.log(Math.round((tiempoFin-tiempo1)/1000));
-
+        tiempoTotal = (tiempoFin-tiempo1)/1000; // Dividido / 1000 por que son milisengundos
+        console.log('Tiempo: ' + tiempoTotal);  // Segundos
+        precio = (tiempoTotal / 60) * (precioHora/60);
+        console.log('Precio: ' + precio);
     }
 }
 
@@ -39,14 +43,14 @@ function iniciaTiempo(){
     let minutos = tiempoInicio.getMinutes();
     inicio.textContent = HoraInicio + ':' + minutos + amPm;
     
-    let hora =0, minuto = 0, segundo = 0;
+    let hora =0, minuto = 0, segundo = 1;
     /* tiempoInicio =  */setInterval(function(){
-        if(segundo==59){
+        if(segundo==60){
             // minuto = Math.round(segundo/60);
             minuto++;
             // segundo = segundo%60;
             segundo = 0;
-            if(minuto==59){
+            if(minuto==60){
                 // hora = Math.round(minuto/60);
                 hora++;
                 // minuto = hora%60;
@@ -56,7 +60,6 @@ function iniciaTiempo(){
         tiempo.textContent = hora + ':' + minuto + ':' + segundo;
         contador++;
         segundo++;
-        console.log(segundo);
     }, 1000);
 
     boton.textContent = 'Detener';
