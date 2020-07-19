@@ -27,9 +27,31 @@
                 </div>
             </div>
             <div class="col-sm">
-                <div id="boton" class="btn btn-success">
+                <button type="button" id="boton" class="btn btn-success" data-toggle="modal">
                     Contar
-                </div>
+                </button>
+                
+                <!-- Modal -->
+                <div class="modal" tabindex="-1" role="dialog" id="modalCobro" data-backdrop="static">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title">Cerrar Consola</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <p>¿Deseas para el conteo?</p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
+                          <button type="button" class="btn btn-primary">Cobrar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <!-- Fin modal -->
             </div>
         </div>
         

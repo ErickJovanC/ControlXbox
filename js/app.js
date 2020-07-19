@@ -21,10 +21,11 @@ function iniciaContador(){
         console.log(tiempo1);
     }
     else{
+        boton.setAttribute('data-target', '#modalCobro');
         let tiempoFin = new Date();
         tiempoTotal = (tiempoFin-tiempo1)/1000; // Dividido / 1000 por que son milisengundos
         console.log('Tiempo: ' + tiempoTotal);  // Segundos
-        precio = (tiempoTotal / 60) * (precioHora/60);
+        precio = (tiempoTotal / 60) * (precioHora/60);  // Precio se divide en 60 para obtener precio por min.
         console.log('Precio: ' + precio);
     }
 }
