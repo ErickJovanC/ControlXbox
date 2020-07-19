@@ -32,7 +32,7 @@ function iniciaContador(){
         // console.log('Tiempo: ' + tiempoTotal);  // Segundos
         precio = (tiempoTotal / 60) * (precioHora/60);  // Precio se divide en 60 para obtener precio por min.
         modalTiempoTotal.textContent = 'Tiempo: ' + tiempoTotal;
-        modalPrecio.textContent = 'Precio' + precio;
+        modalPrecio.textContent = 'Precio: $' + precio;
         // console.log('Precio: ' + precio);
     }
 }
@@ -52,6 +52,8 @@ function iniciaTiempo(){
     inicio.textContent = HoraInicio + ':' + minutos + amPm;
     
     let hora =0, minuto = 0, segundo = 1;
+
+    // Intervalo
     contadorIntervalo =  setInterval(function(){
         if(segundo==60){
             // minuto = Math.round(segundo/60);
@@ -69,6 +71,7 @@ function iniciaTiempo(){
         contador++;
         segundo++;
     }, 1000);
+    // Fin Intervalo
 
     botonContar.textContent = 'Detener';
     consolaActiva = true;
@@ -78,8 +81,8 @@ function iniciaTiempo(){
 function reiniciaContador(){
     clearInterval(contadorIntervalo);
     consolaActiva = false;
-    inicio.textContent = '0:00';
-    tiempo.textContent = '0:00';
+    inicio.textContent = '0:0';
+    tiempo.textContent = '0:0:0';
     botonContar.textContent = 'Contar';
     botonContar.removeAttribute('data-target');
 }

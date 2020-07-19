@@ -1,3 +1,12 @@
+.container{
+    width: 80%;
+    margin: auto;
+}
+
+.card{
+    width: 100px;
+}
+
 #numero{
     background-color: yellowgreen;
     border:0px;
@@ -12,6 +21,12 @@
 }
 
 #tiempo{
+    background-color: yellowgreen;
+    border:0px;
+    padding: 6px;
+}
+
+#extras{
     background-color: yellowgreen;
     border:0px;
     padding: 6px;
