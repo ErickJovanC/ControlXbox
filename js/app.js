@@ -5,6 +5,8 @@ const botonContar = document.querySelector('#boton');
 const botonCobrar = document.querySelector('#botonCobrar');
 const modalTiempoTotal = document.querySelector('#tiempoTotal');
 const modalPrecio = document.querySelector('#precio');
+const numeroConsola = document.querySelector('#numero');
+const modalNumeroConsola = document.querySelector('#numeroModal');
 
 let consolaActiva = false;  // Se activa al oprimir en Contar
 let contadorIntervalo;
@@ -18,6 +20,14 @@ let precio;
 botonContar.addEventListener('click', iniciaContador);
 botonCobrar.addEventListener('click', reiniciaContador); // Debera registar los datos en la DB
 
+/**Los valores a registrar en la DB deberan ser los del modal
+ * para evitar que sean distintos al contador
+ * 
+ * El modal debera desabilitar el botón Cobrar tras un a tres minutos en espera
+ * para evitar que corra demaciado tiempo al momento de cobrar
+ */
+
+
 // Funciones
 function iniciaContador(){
     
@@ -26,14 +36,7 @@ function iniciaContador(){
         // console.log(tiempo1);
     }
     else{
-        botonContar.setAttribute('data-target', '#modalCobro');
-        let tiempoFin = new Date();
-        tiempoTotal = (tiempoFin-tiempo1)/1000; // Dividido / 1000 por que son milisengundos
-        // console.log('Tiempo: ' + tiempoTotal);  // Segundos
-        precio = (tiempoTotal / 60) * (precioHora/60);  // Precio se divide en 60 para obtener precio por min.
-        modalTiempoTotal.textContent = 'Tiempo: ' + tiempoTotal;
-        modalPrecio.textContent = 'Precio: $' + precio;
-        // console.log('Precio: ' + precio);
+        dibujaModal();
     }
 }
 
@@ -78,6 +81,20 @@ function iniciaTiempo(){
     return tiempoInicio.getTime();
 }
 
+// Crea la ventana del modal pra cobrar
+function dibujaModal(){
+    botonContar.setAttribute('data-target', '#modalCobro');
+        let tiempoFin = new Date();
+        tiempoTotal = (tiempoFin-tiempo1)/1000; // Dividido / 1000 por que son milisengundos
+        // console.log('Tiempo: ' + tiempoTotal);  // Segundos
+        convierteTiempo(tiempoTotal);
+        precio = (tiempoTotal / 60) * (precioHora/60);  // Precio se divide en 60 para obtener precio por min.
+        modalNumeroConsola.textContent = "Consola No. " + numeroConsola.textContent;
+        modalPrecio.textContent = 'Precio: $' + precio;
+        // console.log('Precio: ' + precio);
+}
+
+// Tras cerrar el conteo
 function reiniciaContador(){
     clearInterval(contadorIntervalo);
     consolaActiva = false;
@@ -85,4 +102,19 @@ function reiniciaContador(){
     tiempo.textContent = '0:0:0';
     botonContar.textContent = 'Contar';
     botonContar.removeAttribute('data-target');
+}
+
+// Imprime los segundos en horas y minutos 
+function convierteTiempo(tiempoConvertir){
+    console.log(tiempoConvertir);
+    let minutos, horas = 0;
+    if(tiempoConvertir>5400){
+        horas = tiempoConvertir/12;
+        minutos = Math.round(tiempoConvertir%12);
+    }
+    else{
+        minutos = Math.round(tiempoConvertir / 60);
+    }
+    modalTiempoTotal.textContent = 'Tiempo: ' + horas + ':' + minutos;
+    console.log(horas + ' M ' + minutos);
 }
