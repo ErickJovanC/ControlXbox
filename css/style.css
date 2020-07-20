@@ -1,33 +1,46 @@
 .container{
-    width: 80%;
-    margin: auto;
+    background-color: lightgrey;
 }
 
-.card{
+/* .card{
     width: 100px;
+} */
+
+.row{
+    background-color: green;
 }
 
+.col{
+    margin: 2px 2px;
+}
 #numero{
     background-color: yellowgreen;
-    border:0px;
-    padding: 6px;
+    /* border:0px; */
+    /* padding: 6px 0px; */
+    margin: 2px 2px;
+    /* width: 100%; */
+    text-align: center;
+    font-size: x-large;
 }
 
 #inicio{
     background-color: yellowgreen;
-    border:0px;
-    padding: 6px;
+    /* border:0px; */
+    padding: 6px 3px;
     /* width: 80px; */
+    margin: 2px 2px;
 }
 
 #tiempo{
     background-color: yellowgreen;
-    border:0px;
-    padding: 6px;
+    /* border:0px; */
+    /* padding: 6px; */
+    margin: 2px 2px;
+    padding: 6px 3px;
 }
 
-#extras{
+/* #extras{
     background-color: yellowgreen;
     border:0px;
     padding: 6px;
-}
+} */
